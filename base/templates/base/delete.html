@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<form method="POST" action="">
+    {% csrf_token%}
+    <p> Are you sure you want to delete " {{obj}}"?</p>
+    <h1>{{room.id}}, {{room.name}}</h1>
+    <h3>{{room.description}}</h3>
+    <div> 
+        <p>[작성일자] {{room.created}} </p>
+        <p>[토픽] {{room.topic}} </p>
+        <p>[호스트] {{room.host}} </p>
+    </div>
+    <a href="{{request.META.HTTP_REFERER}}"> Go Back</a>
+    <input type="submit" value="Confirm"/>
+</form>
+
+
+
+
+
+{%endblock %}

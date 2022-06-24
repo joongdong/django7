@@ -1,0 +1,48 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<style>
+    .home-container{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+</style>
+
+<h1> Home Templates</h1>
+
+<div class ="home-container">
+
+    <div>
+        <h3> Browse Topics </h3>
+        <hr>
+        <p><a href="{% url 'home' %}">All</a></p>
+
+        {% for topic in topics %}
+
+        <p><a href="{% url 'home' %}?q={{topic}}">{{topic.name}}</a></p>
+
+        {% endfor %}
+    </div>
+    
+    <div>   
+        <a href="{% url 'create-room' %}"> create room </a>
+ 
+            {% for room in rooms %}
+
+                <div>
+                    <a href="{% url 'update-room' room.id %}"> Edit</a>
+                    <a href="{% url 'delete-room' room.id %}"> Del</a>
+                    <h5>{{room.id}}<a href="/room/{{room.id}}">[제목] {{room.name}}</a></h5>
+                    <h3>[토픽] {{room.topic.name}}</h3>
+                    <h3>[사용자] {{room.host}}</h3>
+                </div>
+            {% endfor %}
+    </div>
+
+
+</div>
+
+
+{% endblock content %}
