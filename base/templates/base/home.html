@@ -2,7 +2,6 @@
 
 {% block content %}
 
-
 <style>
     .home-container{
         display: grid;
@@ -21,22 +20,25 @@
 
         {% for topic in topics %}
 
-        <p><a href="{% url 'home' %}?q={{topic}}">{{topic.name}}</a></p>
+        <p><a href="{% url 'home' %}?q={{topic}}">{{topic.name}}</a></p>  <!-- # http://127.0.0.1:8000/?q=Html -->
 
         {% endfor %}
     </div>
-    
+
     <div>   
+        <h5> {{room_count}} rooms available </h5>
+        
         <a href="{% url 'create-room' %}"> create room </a>
  
             {% for room in rooms %}
 
                 <div>
-                    <a href="{% url 'update-room' room.id %}"> Edit</a>
+                    <a href="{% url 'update-room' room.id %}"> Edit</a><!-- # http://127.0.0.1:8000/update-room/7/ -->  
+                                                         
                     <a href="{% url 'delete-room' room.id %}"> Del</a>
-                    <h5>{{room.id}}<a href="/room/{{room.id}}">[제목] {{room.name}}</a></h5>
-                    <h3>[토픽] {{room.topic.name}}</h3>
-                    <h3>[사용자] {{room.host}}</h3>
+                    <h3>{{room.id}}<a href="/room/{{room.id}}">[제목] {{room.name}}</a></h3>
+                    <h4>[토픽] {{room.topic.name}}</h4>
+                    <h4>[사용자] {{room.host}}</h4>
                 </div>
             {% endfor %}
     </div>
